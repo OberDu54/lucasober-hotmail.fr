@@ -1,5 +1,6 @@
 package fr.ul.miage.lucas;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
@@ -11,9 +12,32 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import fr.ul.miage.meteo.json.Result;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class App {
+public class App extends Application{
+	
 	private static final Logger LOG = Logger.getLogger(App.class.getName());
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle("TP3_Oberhausser");
+		Parent root = null;
+		try {
+			root = FXMLLoader.load(getClass().getResource("Window.fxml"));
+		}catch(IOException e) {
+			LOG.severe("Erreur de chargement de l'interface");
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		//primaryStage.setResizable(false);
+		primaryStage.show();	
+	}
+	
 	public static void main(String[] args) {
 		// paramètres
 		String ville = "Nancy";
@@ -34,12 +58,14 @@ public class App {
 			if (line.hasOption("p")) {
 				pays = line.getOptionValue("p");
 			}
+			launch(args);
 		} catch (ParseException exp) {
 			LOG.severe("Erreur dans la ligne de commande");
 			HelpFormatter formatter = new HelpFormatter();
 			formatter.printHelp("meteo", options);
 			System.exit(1);
 		}
+		/*
 		// traitement
 		MeteoClient cl = new MeteoClient(ville, pays);
 		Result res = cl.getWeatherByCityName();
@@ -50,6 +76,8 @@ public class App {
 		} else {
 			System.out.println("Impossible de trouver la température");
 		}
+		*/
 	}
+
 
 }
