@@ -34,6 +34,9 @@ public class WindowController implements Initializable{
 	private ChoiceBox<Integer> minuteChoice;
 	
 	@FXML
+	private ChoiceBox<Integer> secondChoice;
+	
+	@FXML
 	private Button timeButton;
 	
 	@FXML
@@ -58,32 +61,23 @@ public class WindowController implements Initializable{
 			minuteList.add(i);
 		}
 		minuteChoice.setItems(minuteList);
-		hourChoice.setValue(0);
-		minuteChoice.setValue(5);
-	}
-	
-	/*
-	public void getMeteo() {
-		String pays = "fr";
-		String ville = cityField.getText();
-		MeteoClient cl = new MeteoClient(ville, pays);
-		Result res = cl.getWeatherByCityName();
-		if (res != null) {
-			String v = res.getName();
-			float t = res.getMain().getTemp();
-			float celsius = t-273.15f;
-			displayer.setText("Il fait "+ celsius +" à "+v);
-		} else {
-			System.out.println("Impossible de trouver la température");
+		ObservableList<Integer> secondList = FXCollections.observableArrayList();
+		for(int i = 0; i<=59; i++) {
+			secondList.add(i);
 		}
+		secondChoice.setItems(secondList);
+		hourChoice.setValue(0);
+		minuteChoice.setValue(0);
+		secondChoice.setValue(5);
 	}
-	*/
+
 	
 	public void getMeteo() {
 		String ville = cityField.getText();
 		int minutes = minuteChoice.getValue();
 		int hours = hourChoice.getValue();
-		long time = MyUtil.toMiliseconds(hours, minutes, 0);
+		int sec = secondChoice.getValue();
+		long time = MyUtil.toMiliseconds(hours, minutes, sec);
 		MeteoClient client = new MeteoClient(ville,"fr");
 		MeteoLoader loader = new MeteoLoader(client, time);
 		loader.start();

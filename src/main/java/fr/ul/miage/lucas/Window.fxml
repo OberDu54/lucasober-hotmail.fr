@@ -8,12 +8,14 @@
 
 <AnchorPane prefHeight="674.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ul.miage.lucas.WindowController">
    <children>
-      <TextField fx:id="cityField" layoutX="120.0" layoutY="26.0" prefHeight="25.0" prefWidth="300.0" />
-      <Button fx:id="searchButton" layoutX="460.0" layoutY="26.0" mnemonicParsing="false" text="Rechercher" />
-      <ChoiceBox fx:id="hourChoice" layoutX="88.0" layoutY="168.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="minuteChoice" layoutX="283.0" layoutY="168.0" prefWidth="150.0" />
-      <Button fx:id="timeButton" layoutX="472.0" layoutY="168.0" mnemonicParsing="false" text="OK" />
-      <Button fx:id="refreshButton" layoutX="247.0" layoutY="279.0" mnemonicParsing="false" prefHeight="74.0" prefWidth="222.0" text="Rafraichir" onAction="#getMeteo"/>
+      <TextField fx:id="cityField" layoutX="194.0" layoutY="27.0" prefHeight="25.0" prefWidth="300.0" />
+      <ChoiceBox fx:id="hourChoice" layoutX="59.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
+      <ChoiceBox fx:id="minuteChoice" layoutX="235.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
+      <Button fx:id="refreshButton" layoutX="247.0" layoutY="249.0" mnemonicParsing="false" onAction="#getMeteo" prefHeight="74.0" prefWidth="222.0" text="Rafraichir" />
       <Label fx:id="displayer" layoutX="344.0" layoutY="462.0" text="Label" />
+      <ChoiceBox fx:id="secondChoice" layoutX="448.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
+      <Label layoutX="156.0" layoutY="117.0" text="Heures" />
+      <Label layoutX="337.0" layoutY="117.0" text="Minutes" />
+      <Label layoutX="549.0" layoutY="117.0" text="Secondes" />
    </children>
 </AnchorPane>
