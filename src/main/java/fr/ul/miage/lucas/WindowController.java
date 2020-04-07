@@ -42,23 +42,27 @@ public class WindowController implements Initializable{
 	@FXML
 	private Label displayer;
 	
+	private MeteoLoader loader;
+	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		cityField.setText("Entrez un nom de ville pour la recherche");
-		hourChoice.setValue(0);
-		minuteChoice.setValue(0);
 		ObservableList<Integer> hourList = FXCollections.observableArrayList();
-		for(int i = 0; i<=24; i++) {
+		for(int i = 0; i<=23; i++) {
 			hourList.add(i);
 		}
 		hourChoice.setItems(hourList);
 		ObservableList<Integer> minuteList = FXCollections.observableArrayList();
-		for(int i = 0; i<=60; i++) {
+		for(int i = 0; i<=59; i++) {
 			minuteList.add(i);
 		}
+		minuteChoice.setItems(minuteList);
+		hourChoice.setValue(0);
+		minuteChoice.setValue(5);
 	}
 	
+	/*
 	public void getMeteo() {
 		String pays = "fr";
 		String ville = cityField.getText();
@@ -72,6 +76,14 @@ public class WindowController implements Initializable{
 		} else {
 			System.out.println("Impossible de trouver la température");
 		}
+	}
+	*/
+	
+	public void getMeteo() {
+		String ville = cityField.getText();
+		MeteoClient client = new MeteoClient(ville,"fr");
+		MeteoLoader loader = new MeteoLoader(client, 5000);
+		loader.start();
 	}
 	
 	
