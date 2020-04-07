@@ -81,8 +81,11 @@ public class WindowController implements Initializable{
 	
 	public void getMeteo() {
 		String ville = cityField.getText();
+		int minutes = minuteChoice.getValue();
+		int hours = hourChoice.getValue();
+		long time = MyUtil.toMiliseconds(hours, minutes, 0);
 		MeteoClient client = new MeteoClient(ville,"fr");
-		MeteoLoader loader = new MeteoLoader(client, 5000);
+		MeteoLoader loader = new MeteoLoader(client, time);
 		loader.start();
 	}
 	
