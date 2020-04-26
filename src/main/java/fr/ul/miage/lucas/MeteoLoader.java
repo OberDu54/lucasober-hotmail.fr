@@ -53,8 +53,6 @@ public class MeteoLoader extends Service<Void> {
 								text.set("Il fait "+ celsius +" à "+v);
 							}
 						);
-						System.out.println("valeur de text"+text.getValueSafe());
-						text.notifyAll();
 					} else {
 						System.out.println("Impossible de trouver la température");
 					}
