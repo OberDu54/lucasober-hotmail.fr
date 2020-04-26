@@ -43,7 +43,7 @@ public class WindowController implements Initializable{
 	private Button refreshButton;
 	
 	@FXML
-	private Label displayer;
+	public Label displayer;
 	
 	private MeteoLoader loader;
 	
@@ -80,6 +80,7 @@ public class WindowController implements Initializable{
 		long time = MyUtil.toMiliseconds(hours, minutes, sec);
 		MeteoClient client = new MeteoClient(ville,"fr");
 		MeteoLoader loader = new MeteoLoader(client, time);
+		displayer.textProperty().bind(loader.text);
 		loader.start();
 	}
 	
