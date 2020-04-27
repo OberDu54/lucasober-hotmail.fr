@@ -67,6 +67,7 @@ public class MeteoLoader extends Service<Void> {
 								text.set("Impossible de trouver les informations pour cette ville");
 							}
 						);
+						this.cancel();
 					}
 					Thread.sleep(refreshTime);
 				}
