@@ -25,6 +25,9 @@ public class WindowController implements Initializable{
 	private TextField cityField;
 	
 	@FXML
+	private TextField countryField;
+	
+	@FXML
 	private Button searchButton;
 	
 	@FXML
@@ -74,11 +77,12 @@ public class WindowController implements Initializable{
 	
 	public void getMeteo() {
 		String ville = cityField.getText();
+		String pays = countryField.getText();
 		int minutes = minuteChoice.getValue();
 		int hours = hourChoice.getValue();
 		int sec = secondChoice.getValue();
 		long time = MyUtil.toMiliseconds(hours, minutes, sec);
-		MeteoClient client = new MeteoClient(ville,"fr");
+		MeteoClient client = new MeteoClient(ville,pays);
 		MeteoLoader loader = new MeteoLoader(client, time);
 		displayer.textProperty().bind(loader.text);
 		loader.start();

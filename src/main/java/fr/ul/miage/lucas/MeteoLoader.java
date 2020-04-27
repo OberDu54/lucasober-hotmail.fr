@@ -2,6 +2,8 @@ package fr.ul.miage.lucas;
 
 import javafx.scene.control.Label;
 
+import java.util.logging.Logger;
+
 import fr.ul.miage.meteo.json.Result;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,6 +12,8 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
 public class MeteoLoader extends Service<Void> {
+
+	private static final Logger LOG = Logger.getLogger(MeteoLoader.class.getName());
 	
 	/**
 	 * Client meteo 
@@ -43,18 +47,26 @@ public class MeteoLoader extends Service<Void> {
 			protected Void call() throws Exception {
 				while(!isCancelled()) {
 					Result res = client.getWeatherByCityName();
+					String jsonString = client.getJsonWeatherByCityName();
+					
 					if (res != null) {
 						String v = res.getName();
 						float t = res.getMain().getTemp();
 						float celsius = t-273.15f;
 						System.out.println("Il fait "+ celsius +" à "+v);
+						System.out.println(jsonString);
 						Platform.runLater(
 							()->{
 								text.set("Il fait "+ celsius +" à "+v);
 							}
 						);
 					} else {
-						System.out.println("Impossible de trouver la température");
+						LOG.severe("Impossible de trouver les informations pour cette ville");
+						Platform.runLater(
+							()->{
+								text.set("Impossible de trouver les informations pour cette ville");
+							}
+						);
 					}
 					Thread.sleep(refreshTime);
 				}
