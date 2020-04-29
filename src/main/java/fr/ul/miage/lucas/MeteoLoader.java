@@ -4,7 +4,9 @@ import javafx.scene.control.Label;
 
 import java.util.logging.Logger;
 
+import fr.ul.miage.meteo.json.Clouds;
 import fr.ul.miage.meteo.json.Result;
+import fr.ul.miage.meteo.json.Wind;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -30,13 +32,22 @@ public class MeteoLoader extends Service<Void> {
 	 */
 	private Label label;
 	
-	public StringProperty text;
+	private StringProperty text;
+	
+	private StringProperty textClouds;
+	
+	private StringProperty textWind;
+	
+	//private JSONProcessor processor;
 		
 	public MeteoLoader(MeteoClient client, long time) {
 		super();
 		this.client = client;
 		this.refreshTime = time;
 		this.text = new SimpleStringProperty("");
+		this.textClouds = new SimpleStringProperty("");
+		this.textWind = new SimpleStringProperty("");
+		//this.processor = new JSONProcessor();
 	}
 
 	@Override
@@ -55,9 +66,15 @@ public class MeteoLoader extends Service<Void> {
 						float celsius = t-273.15f;
 						System.out.println("Il fait "+ celsius +" à "+v);
 						System.out.println(jsonString);
+						Result result = JSONProcessor.simpleDeserialize(jsonString);
+						System.out.println(result.toString());
+						Clouds clouds = result.getClouds();
+						Wind wind = result.getWind();
 						Platform.runLater(
 							()->{
 								text.set("Il fait "+ celsius +" à "+v);
+								textClouds.set(""+clouds.getAll());
+								textWind.set("Vitesse : "+wind.getSpeed()+" Degré : "+wind.getDeg());
 							}
 						);
 					} else {
@@ -94,9 +111,13 @@ public class MeteoLoader extends Service<Void> {
 	public long getRefreshTime() {
 		return refreshTime;
 	}
-	
-	
-	
-	
 
+	public StringProperty getTextClouds() {
+		return textClouds;
+	}
+
+	public StringProperty getTextWind() {
+		return textWind;
+	}
+	
 }
