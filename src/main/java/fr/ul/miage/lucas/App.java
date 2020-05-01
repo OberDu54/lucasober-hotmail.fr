@@ -24,7 +24,7 @@ public class App extends Application{
 	
 	private static final Logger LOG = Logger.getLogger(App.class.getName());
 	
-	public static MeteoLoader loader = new MeteoLoader(new MeteoClient(), 5);
+	public static MeteoLoader loader = new MeteoLoader(new MeteoClient("Ville","Pays"), 5);
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
