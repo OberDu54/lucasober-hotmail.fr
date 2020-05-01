@@ -11,6 +11,8 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import com.sun.jersey.api.client.Client;
+
 import fr.ul.miage.meteo.json.Result;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,8 @@ import javafx.stage.Stage;
 public class App extends Application{
 	
 	private static final Logger LOG = Logger.getLogger(App.class.getName());
+	
+	public static MeteoLoader loader = new MeteoLoader(new MeteoClient(), 5);
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -46,17 +50,25 @@ public class App extends Application{
 		Options options = new Options();
 		Option city = new Option("v", "ville", true, "nom de la ville");
 		Option country = new Option("p", "pays", true, "nom du pays");
+		Option time = new Option("t", "temps", true, "temps de rafraichissement en secondes");
 		options.addOption(city);
 		options.addOption(country);
+		options.addOption(time);
 		// parser la ligne de commande
 		CommandLineParser parser = new DefaultParser();
 		try {
 			CommandLine line = parser.parse(options, args);
 			if (line.hasOption("v")) {
 				ville = line.getOptionValue("v");
+				loader.setVille(ville);
 			}
 			if (line.hasOption("p")) {
 				pays = line.getOptionValue("p");
+				loader.setPays(pays);
+			}
+			if(line.hasOption("t")) {
+				long temps = Long.parseLong(line.getOptionValue("t"));
+				loader.setRefreshTime(temps);
 			}
 			launch(args);
 		} catch (ParseException exp) {
@@ -65,18 +77,7 @@ public class App extends Application{
 			formatter.printHelp("meteo", options);
 			System.exit(1);
 		}
-		/*
-		// traitement
-		MeteoClient cl = new MeteoClient(ville, pays);
-		Result res = cl.getWeatherByCityName();
-		if (res != null) {
-			String v = res.getName();
-			float t = res.getMain().getTemp();
-			System.out.printf("If fait %.1f °C à %s%n", t-273.15f, v);
-		} else {
-			System.out.println("Impossible de trouver la température");
-		}
-		*/
+
 	}
 
 

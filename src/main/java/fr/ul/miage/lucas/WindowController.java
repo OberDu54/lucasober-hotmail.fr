@@ -57,7 +57,7 @@ public class WindowController implements Initializable{
 	@FXML
 	public Label labelVille;
 	
-	private MeteoLoader loader;
+	//private MeteoLoader loader;
 	
 
 	@Override
@@ -81,6 +81,8 @@ public class WindowController implements Initializable{
 		hourChoice.setValue(0);
 		minuteChoice.setValue(0);
 		secondChoice.setValue(5);
+		cityField.setText(App.loader.getVille());
+		countryField.setText(App.loader.getPays());
 	}
 
 	
@@ -91,13 +93,17 @@ public class WindowController implements Initializable{
 		int hours = hourChoice.getValue();
 		int sec = secondChoice.getValue();
 		long time = MyUtil.toMiliseconds(hours, minutes, sec);
+		/*
 		MeteoClient client = new MeteoClient(ville,pays);
-		MeteoLoader loader = new MeteoLoader(client, time);
-		labelNuages.textProperty().bind(loader.getTextClouds());
-		labelVent.textProperty().bind(loader.getTextWind());
-		labelTemp.textProperty().bind(loader.getTextTemp());
-		labelVille.textProperty().bind(loader.getTextVille());
-		loader.start();
+		MeteoLoader loader = new MeteoLoader(client, time);*/
+		App.loader.setVille(ville);
+		App.loader.setPays(pays);
+		App.loader.setRefreshTime(time);
+		labelNuages.textProperty().bind(App.loader.getTextClouds());
+		labelVent.textProperty().bind(App.loader.getTextWind());
+		labelTemp.textProperty().bind(App.loader.getTextTemp());
+		labelVille.textProperty().bind(App.loader.getTextVille());
+		App.loader.start();
 	}
 	
 	

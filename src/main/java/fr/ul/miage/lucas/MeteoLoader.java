@@ -131,6 +131,10 @@ public class MeteoLoader extends Service<Void> {
 		return refreshTime;
 	}
 
+	public void setRefreshTime(long refreshTime) {
+		this.refreshTime = refreshTime;
+	}
+
 	public StringProperty getTextClouds() {
 		return textClouds;
 	}
@@ -151,8 +155,16 @@ public class MeteoLoader extends Service<Void> {
 		this.client.setCity(v);
 	}
 	
+	public String getVille() {
+		return this.client.getCity();
+	}
+	
 	public void setPays(String p) {
 		this.client.setCountry(p);
+	}
+	
+	public String getPays() {
+		return this.client.getCountry();
 	}
 	
 }
