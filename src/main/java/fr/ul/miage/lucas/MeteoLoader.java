@@ -2,6 +2,7 @@ package fr.ul.miage.lucas;
 
 import javafx.scene.control.Label;
 
+import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
 import fr.ul.miage.meteo.json.Clouds;
@@ -80,6 +81,8 @@ public class MeteoLoader extends Service<Void> {
 						String v = res.getName();
 						float t = res.getMain().getTemp();
 						float celsius = t-273.15f;
+						DecimalFormat df = new DecimalFormat("##.#");
+						String temp = df.format(celsius);
 						System.out.println("Il fait "+ celsius +" à "+v);
 						System.out.println(jsonString);
 						Result result = JSONProcessor.simpleDeserialize(jsonString);
@@ -88,7 +91,7 @@ public class MeteoLoader extends Service<Void> {
 						Platform.runLater(
 							()->{
 								textVille.set(v+", "+client.getCountry());
-								textTemp.set(celsius+"°");
+								textTemp.set(temp+"°");
 								textClouds.set(""+clouds.getAll());
 								textWind.set("Vitesse : "+wind.getSpeed()+" Degré : "+wind.getDeg());
 							}
