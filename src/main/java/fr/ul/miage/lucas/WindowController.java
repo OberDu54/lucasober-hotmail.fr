@@ -87,6 +87,10 @@ public class WindowController implements Initializable{
 
 	
 	public void getMeteo() {
+		if(App.loader.isRunning()) {
+			App.loader.cancel();
+			App.loader.reset();
+		}
 		String ville = cityField.getText();
 		String pays = countryField.getText();
 		int minutes = minuteChoice.getValue();
