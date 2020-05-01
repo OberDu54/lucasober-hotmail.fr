@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import fr.ul.miage.meteo.json.Clouds;
 import fr.ul.miage.meteo.json.Result;
+import fr.ul.miage.meteo.json.Weather;
 import fr.ul.miage.meteo.json.Wind;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -31,23 +32,38 @@ public class MeteoLoader extends Service<Void> {
 	 * Label ou afficher les résultats
 	 */
 	private Label label;
-	
+
 	private StringProperty text;
 	
+	/**
+	 * Texte renseignant les nuages
+	 */
 	private StringProperty textClouds;
 	
+	/**
+	 * Texte renseignant le vent
+	 */
 	private StringProperty textWind;
 	
-	//private JSONProcessor processor;
-		
+	/**
+	 * Texte renseignant la ville 
+	 */
+	private StringProperty textVille;
+	
+	/**
+	 * Texte renseignant la température
+	 */
+	private StringProperty textTemp;
+
+	
 	public MeteoLoader(MeteoClient client, long time) {
 		super();
 		this.client = client;
 		this.refreshTime = time;
-		this.text = new SimpleStringProperty("");
 		this.textClouds = new SimpleStringProperty("");
 		this.textWind = new SimpleStringProperty("");
-		//this.processor = new JSONProcessor();
+		this.textVille = new SimpleStringProperty("");
+		this.textTemp = new SimpleStringProperty("");
 	}
 
 	@Override
@@ -67,12 +83,12 @@ public class MeteoLoader extends Service<Void> {
 						System.out.println("Il fait "+ celsius +" à "+v);
 						System.out.println(jsonString);
 						Result result = JSONProcessor.simpleDeserialize(jsonString);
-						System.out.println(result.toString());
 						Clouds clouds = result.getClouds();
 						Wind wind = result.getWind();
 						Platform.runLater(
 							()->{
-								text.set("Il fait "+ celsius +" à "+v);
+								textVille.set(v+", "+client.getCountry());
+								textTemp.set(celsius+"°");
 								textClouds.set(""+clouds.getAll());
 								textWind.set("Vitesse : "+wind.getSpeed()+" Degré : "+wind.getDeg());
 							}
@@ -118,6 +134,14 @@ public class MeteoLoader extends Service<Void> {
 
 	public StringProperty getTextWind() {
 		return textWind;
+	}
+
+	public StringProperty getTextVille() {
+		return textVille;
+	}
+
+	public StringProperty getTextTemp() {
+		return textTemp;
 	}
 	
 }

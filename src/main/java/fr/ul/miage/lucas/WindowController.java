@@ -46,13 +46,16 @@ public class WindowController implements Initializable{
 	private Button refreshButton;
 	
 	@FXML
-	public Label displayer;
-	
-	@FXML
 	public Label labelVent;
 	
 	@FXML
 	public Label labelNuages;
+	
+	@FXML
+	public Label labelTemp;
+	
+	@FXML
+	public Label labelVille;
 	
 	private MeteoLoader loader;
 	
@@ -90,9 +93,10 @@ public class WindowController implements Initializable{
 		long time = MyUtil.toMiliseconds(hours, minutes, sec);
 		MeteoClient client = new MeteoClient(ville,pays);
 		MeteoLoader loader = new MeteoLoader(client, time);
-		displayer.textProperty().bind(loader.getText());
 		labelNuages.textProperty().bind(loader.getTextClouds());
 		labelVent.textProperty().bind(loader.getTextWind());
+		labelTemp.textProperty().bind(loader.getTextTemp());
+		labelVille.textProperty().bind(loader.getTextVille());
 		loader.start();
 	}
 	
