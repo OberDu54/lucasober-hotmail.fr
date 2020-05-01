@@ -147,4 +147,12 @@ public class MeteoLoader extends Service<Void> {
 		return textTemp;
 	}
 	
+	public void setVille(String v) {
+		this.client.setCity(v);
+	}
+	
+	public void setPays(String p) {
+		this.client.setCountry(p);
+	}
+	
 }
