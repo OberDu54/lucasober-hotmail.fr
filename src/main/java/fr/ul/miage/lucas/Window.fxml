@@ -40,12 +40,12 @@
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelTemp" layoutX="358.0" layoutY="583.0" prefHeight="19.0" prefWidth="123.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="labelTemp" layoutX="342.0" layoutY="583.0" prefHeight="19.0" prefWidth="106.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label fx:id="labelDesc" alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="360.0" prefHeight="17.0" prefWidth="492.0">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="237.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView" fitHeight="154.0" fitWidth="216.0" layoutX="229.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

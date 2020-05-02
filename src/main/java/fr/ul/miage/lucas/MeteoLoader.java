@@ -80,7 +80,7 @@ public class MeteoLoader extends Service<Void> {
 		this.textVille = new SimpleStringProperty("");
 		this.textTemp = new SimpleStringProperty("");
 		this.textDesc = new SimpleStringProperty("");
-		this.imageProperty = new SimpleObjectProperty<Image>(new Image("http://openweathermap.org/img/w/10d.png"));
+		this.imageProperty = new SimpleObjectProperty<Image>();
 	}
 
 	@Override
