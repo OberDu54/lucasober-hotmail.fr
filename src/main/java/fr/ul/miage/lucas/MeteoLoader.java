@@ -3,6 +3,7 @@ package fr.ul.miage.lucas;
 import javafx.scene.control.Label;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.logging.Logger;
 
 import fr.ul.miage.meteo.json.Clouds;
@@ -55,6 +56,11 @@ public class MeteoLoader extends Service<Void> {
 	 * Texte renseignant la température
 	 */
 	private StringProperty textTemp;
+	
+	/**
+	 * Texte decrivant le temps d'une manière générale
+	 */
+	private StringProperty textDesc;
 
 	
 	public MeteoLoader(MeteoClient client, long time) {
@@ -65,6 +71,7 @@ public class MeteoLoader extends Service<Void> {
 		this.textWind = new SimpleStringProperty("");
 		this.textVille = new SimpleStringProperty("");
 		this.textTemp = new SimpleStringProperty("");
+		this.textDesc = new SimpleStringProperty("");
 	}
 
 	@Override
@@ -88,12 +95,15 @@ public class MeteoLoader extends Service<Void> {
 						Result result = JSONProcessor.simpleDeserialize(jsonString);
 						Clouds clouds = result.getClouds();
 						Wind wind = result.getWind();
+						List<Weather> weather = result.getWeather();
+						String desc = weather.get(0).getDescription();
 						Platform.runLater(
 							()->{
 								textVille.set(v+", "+client.getCountry());
 								textTemp.set(temp+"°");
 								textClouds.set(""+clouds.getAll()+"%");
 								textWind.set("Vitesse : "+wind.getSpeed()+"m/s Degré : "+wind.getDeg());
+								textDesc.set(desc);
 							}
 						);
 					} else {
@@ -151,6 +161,10 @@ public class MeteoLoader extends Service<Void> {
 		return textTemp;
 	}
 	
+	public StringProperty getTextDesc() {
+		return textDesc;
+	}
+
 	public void setVille(String v) {
 		this.client.setCity(v);
 	}

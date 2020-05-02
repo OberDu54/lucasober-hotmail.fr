@@ -110,6 +110,7 @@ public class WindowController implements Initializable{
 		labelVent.textProperty().bind(App.loader.getTextWind());
 		labelTemp.textProperty().bind(App.loader.getTextTemp());
 		labelVille.textProperty().bind(App.loader.getTextVille());
+		labelDesc.textProperty().bind(App.loader.getTextDesc());
 		App.loader.start();
 	}
 	
