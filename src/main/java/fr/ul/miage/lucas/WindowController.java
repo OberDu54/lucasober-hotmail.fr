@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import com.sun.javafx.geom.transform.BaseTransform.Degree;
 
 import fr.ul.miage.meteo.json.Result;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.TextFlow;
 
 public class WindowController implements Initializable{
@@ -60,8 +62,8 @@ public class WindowController implements Initializable{
 	@FXML
 	public Label labelDesc;
 	
-	//private MeteoLoader loader;
-	
+	@FXML
+	public ImageView imageView;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -111,6 +113,7 @@ public class WindowController implements Initializable{
 		labelTemp.textProperty().bind(App.loader.getTextTemp());
 		labelVille.textProperty().bind(App.loader.getTextVille());
 		labelDesc.textProperty().bind(App.loader.getTextDesc());
+		imageView.imageProperty().bind(App.loader.getImageProperty());
 		App.loader.start();
 	}
 	

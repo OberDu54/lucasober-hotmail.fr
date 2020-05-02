@@ -1,16 +1,22 @@
 package fr.ul.miage.lucas;
 
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.logging.Logger;
+
+import javax.ws.rs.core.NewCookie;
 
 import fr.ul.miage.meteo.json.Clouds;
 import fr.ul.miage.meteo.json.Result;
 import fr.ul.miage.meteo.json.Weather;
 import fr.ul.miage.meteo.json.Wind;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Service;
@@ -61,6 +67,8 @@ public class MeteoLoader extends Service<Void> {
 	 * Texte decrivant le temps d'une manière générale
 	 */
 	private StringProperty textDesc;
+	
+	private ObjectProperty<Image> imageProperty;
 
 	
 	public MeteoLoader(MeteoClient client, long time) {
@@ -72,6 +80,7 @@ public class MeteoLoader extends Service<Void> {
 		this.textVille = new SimpleStringProperty("");
 		this.textTemp = new SimpleStringProperty("");
 		this.textDesc = new SimpleStringProperty("");
+		this.imageProperty = new SimpleObjectProperty<Image>(new Image("http://openweathermap.org/img/w/10d.png"));
 	}
 
 	@Override
@@ -97,6 +106,7 @@ public class MeteoLoader extends Service<Void> {
 						Wind wind = result.getWind();
 						List<Weather> weather = result.getWeather();
 						String desc = weather.get(0).getDescription();
+						String iconCode = weather.get(0).getIcon();
 						Platform.runLater(
 							()->{
 								textVille.set(v+", "+client.getCountry());
@@ -104,6 +114,7 @@ public class MeteoLoader extends Service<Void> {
 								textClouds.set(""+clouds.getAll()+"%");
 								textWind.set("Vitesse : "+wind.getSpeed()+"m/s Degré : "+wind.getDeg());
 								textDesc.set(desc);
+								imageProperty.set(new Image("http://openweathermap.org/img/w/"+ iconCode +".png"));
 							}
 						);
 					} else {
@@ -163,6 +174,10 @@ public class MeteoLoader extends Service<Void> {
 	
 	public StringProperty getTextDesc() {
 		return textDesc;
+	}
+
+	public ObjectProperty<Image> getImageProperty() {
+		return imageProperty;
 	}
 
 	public void setVille(String v) {

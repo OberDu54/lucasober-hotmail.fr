@@ -4,16 +4,17 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="674.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ul.miage.lucas.WindowController">
+<AnchorPane prefHeight="754.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ul.miage.lucas.WindowController">
    <children>
       <TextField fx:id="cityField" layoutX="59.0" layoutY="35.0" prefHeight="25.0" prefWidth="344.0" />
       <ChoiceBox fx:id="hourChoice" layoutX="59.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
       <ChoiceBox fx:id="minuteChoice" layoutX="255.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
       <Button fx:id="refreshButton" layoutX="226.0" layoutY="212.0" mnemonicParsing="false" onAction="#getMeteo" prefHeight="74.0" prefWidth="222.0" style="-fx-background-color: blue; -fx-border-style: solid;" text="Lancer/Réinitialiser" textFill="WHITE" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="520.0" prefHeight="27.0" prefWidth="106.0" text="Vent : ">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="623.0" prefHeight="27.0" prefWidth="106.0" text="Vent : ">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font></Label>
@@ -22,28 +23,29 @@
       <Label layoutX="354.0" layoutY="117.0" text="Minutes" />
       <Label layoutX="549.0" layoutY="117.0" text="Secondes" />
       <TextField fx:id="countryField" layoutX="448.0" layoutY="35.0" prefHeight="25.0" prefWidth="92.0" />
-      <Label fx:id="labelVent" layoutX="116.0" layoutY="524.0" prefHeight="19.0" prefWidth="492.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
-      <Label fx:id="displayer1" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="567.0" prefHeight="27.0" prefWidth="106.0" text="Nuages : ">
+      <Label fx:id="labelVent" layoutX="120.0" layoutY="627.0" prefHeight="19.0" prefWidth="492.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="displayer1" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="670.0" prefHeight="27.0" prefWidth="106.0" text="Nuages : ">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelNuages" layoutX="116.0" layoutY="571.0" prefHeight="19.0" prefWidth="492.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="labelNuages" layoutX="120.0" layoutY="674.0" prefHeight="19.0" prefWidth="492.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label fx:id="labelVille" alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="329.0" prefHeight="25.0" prefWidth="216.0">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="217.0" layoutY="476.0" prefHeight="27.0" prefWidth="106.0" text="Température :">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="579.0" prefHeight="27.0" prefWidth="106.0" text="Température :">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelTemp" layoutX="354.0" layoutY="480.0" prefHeight="19.0" prefWidth="123.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="labelTemp" layoutX="358.0" layoutY="583.0" prefHeight="19.0" prefWidth="123.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label fx:id="labelDesc" alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="360.0" prefHeight="17.0" prefWidth="492.0">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="237.0" layoutY="410.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
