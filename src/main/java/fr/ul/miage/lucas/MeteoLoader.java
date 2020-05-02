@@ -92,8 +92,8 @@ public class MeteoLoader extends Service<Void> {
 							()->{
 								textVille.set(v+", "+client.getCountry());
 								textTemp.set(temp+"°");
-								textClouds.set(""+clouds.getAll());
-								textWind.set("Vitesse : "+wind.getSpeed()+" Degré : "+wind.getDeg());
+								textClouds.set(""+clouds.getAll()+"%");
+								textWind.set("Vitesse : "+wind.getSpeed()+"m/s Degré : "+wind.getDeg());
 							}
 						);
 					} else {
