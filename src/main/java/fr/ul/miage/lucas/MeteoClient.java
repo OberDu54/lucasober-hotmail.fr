@@ -42,7 +42,8 @@ public class MeteoClient {
 		String request = WEBSERVICE
 				+ "weather?"
 				+ "q=" + getCity() + "," + getCountry()
-				+ "&APPID=" + getApiKey();
+				+ "&APPID=" + getApiKey()
+				+ "&lang=fr";
 		return request;
 
 	}
