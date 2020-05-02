@@ -57,6 +57,9 @@ public class WindowController implements Initializable{
 	@FXML
 	public Label labelVille;
 	
+	@FXML
+	public Label labelDesc;
+	
 	//private MeteoLoader loader;
 	
 
