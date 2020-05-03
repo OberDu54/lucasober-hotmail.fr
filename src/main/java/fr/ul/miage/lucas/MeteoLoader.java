@@ -99,8 +99,6 @@ public class MeteoLoader extends Service<Void> {
 						float celsius = t-273.15f;
 						DecimalFormat df = new DecimalFormat("##.#");
 						String temp = df.format(celsius);
-						System.out.println("Il fait "+ celsius +" à "+v);
-						System.out.println(jsonString);
 						Result result = JSONProcessor.simpleDeserialize(jsonString);
 						Clouds clouds = result.getClouds();
 						Wind wind = result.getWind();
