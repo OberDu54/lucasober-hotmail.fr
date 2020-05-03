@@ -90,9 +90,6 @@ public class WindowController implements Initializable{
 			secondList.add(i);
 		}
 		secondChoice.setItems(secondList);
-		hourChoice.setValue(0);
-		minuteChoice.setValue(0);
-		secondChoice.setValue(5);
 		cityField.setText(App.loader.getVille());
 		countryField.setText(App.loader.getPays());
 		int time = (int) (App.loader.getRefreshTime()/1000);
@@ -106,6 +103,9 @@ public class WindowController implements Initializable{
 		}
 		textTime += tab[2] + " secondes ";
 		timeLabel.setText(textTime);
+		hourChoice.setValue(tab[0]);
+		minuteChoice.setValue(tab[1]);
+		secondChoice.setValue(tab[2]);
 	}
 
 	
@@ -135,6 +135,22 @@ public class WindowController implements Initializable{
 		App.loader.start();
 	}
 	
-	
-	
+	public void updateRefreshTime() {
+		int minutes = minuteChoice.getValue();
+		int hours = hourChoice.getValue();
+		int sec = secondChoice.getValue();
+		long time = MyUtil.toMiliseconds(hours, minutes, sec);
+		App.loader.setRefreshTime(time);
+		int tab[] = MyUtil.convertSeconds((int)time/1000);
+		String textTime = "Temps de rafraichissement actuel : ";
+		if(tab[0]!=0) {
+			textTime += tab[0] + " heures ";
+		}
+		if(tab[1]!=0) {
+			textTime += tab[1] + " minutes ";
+		}
+		textTime += tab[2] + " secondes ";
+		timeLabel.setText(textTime);
+	}
+
 }

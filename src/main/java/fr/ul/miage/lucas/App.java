@@ -24,7 +24,7 @@ public class App extends Application{
 	
 	private static final Logger LOG = Logger.getLogger(App.class.getName());
 	
-	public static MeteoLoader loader = new MeteoLoader(new MeteoClient("Ville","Pays"), 5);
+	public static MeteoLoader loader = new MeteoLoader(new MeteoClient("Ville","Pays"), 5000);
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -68,7 +68,7 @@ public class App extends Application{
 			}
 			if(line.hasOption("t")) {
 				long temps = Long.parseLong(line.getOptionValue("t"));
-				loader.setRefreshTime(temps);
+				loader.setRefreshTime(temps*1000);
 			}
 			launch(args);
 		} catch (ParseException exp) {
