@@ -13,7 +13,7 @@
       <TextField fx:id="cityField" layoutX="59.0" layoutY="35.0" prefHeight="25.0" prefWidth="344.0" />
       <ChoiceBox fx:id="hourChoice" layoutX="59.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
       <ChoiceBox fx:id="minuteChoice" layoutX="255.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
-      <Button fx:id="refreshButton" layoutX="226.0" layoutY="212.0" mnemonicParsing="false" onAction="#getMeteo" prefHeight="74.0" prefWidth="222.0" style="-fx-background-color: blue; -fx-border-style: solid;" text="Lancer/Réinitialiser" textFill="WHITE" />
+      <Button fx:id="refreshButton" layoutX="226.0" layoutY="234.0" mnemonicParsing="false" onAction="#getMeteo" prefHeight="74.0" prefWidth="222.0" style="-fx-background-color: blue; -fx-border-style: solid;" text="Lancer/Réinitialiser" textFill="WHITE" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="623.0" prefHeight="27.0" prefWidth="106.0" text="Vent : ">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
@@ -47,5 +47,7 @@
          </font>
       </Label>
       <ImageView fx:id="imageView" fitHeight="154.0" fitWidth="216.0" layoutX="229.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="timeLabel" layoutX="60.0" layoutY="171.0" prefHeight="17.0" prefWidth="430.0" text="Temps de rafraichissement : " />
+      <Button fx:id="modifTime" layoutX="509.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: Green; -fx-text-fill: White;" text="Modifier" />
    </children>
 </AnchorPane>
