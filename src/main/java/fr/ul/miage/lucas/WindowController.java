@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 import com.sun.javafx.geom.transform.BaseTransform.Degree;
+import com.sun.javafx.util.TempState;
 
 import fr.ul.miage.meteo.json.Result;
 import javafx.beans.binding.Bindings;
@@ -63,6 +64,12 @@ public class WindowController implements Initializable{
 	public Label labelDesc;
 	
 	@FXML
+	public Label timeLabel;
+	
+	@FXML
+	public Button modifTime;
+	
+	@FXML
 	public ImageView imageView;
 
 	@Override
@@ -88,6 +95,17 @@ public class WindowController implements Initializable{
 		secondChoice.setValue(5);
 		cityField.setText(App.loader.getVille());
 		countryField.setText(App.loader.getPays());
+		int time = (int) (App.loader.getRefreshTime()/1000);
+		int tab[] = MyUtil.convertSeconds(time);
+		String textTime = "Temps de rafraichissement actuel : ";
+		if(tab[0]!=0) {
+			textTime += tab[0] + " heures ";
+		}
+		if(tab[1]!=0) {
+			textTime += tab[1] + " minutes ";
+		}
+		textTime += tab[2] + " secondes ";
+		timeLabel.setText(textTime);
 	}
 
 	
