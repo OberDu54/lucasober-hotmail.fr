@@ -93,16 +93,8 @@ public class WindowController implements Initializable{
 		cityField.setText(App.loader.getVille());
 		countryField.setText(App.loader.getPays());
 		int time = (int) (App.loader.getRefreshTime()/1000);
-		int tab[] = MyUtil.convertSeconds(time);
-		String textTime = "Temps de rafraichissement actuel : ";
-		if(tab[0]!=0) {
-			textTime += tab[0] + " heures ";
-		}
-		if(tab[1]!=0) {
-			textTime += tab[1] + " minutes ";
-		}
-		textTime += tab[2] + " secondes ";
-		timeLabel.setText(textTime);
+		updateTimeLabel(App.loader.getRefreshTime());
+		int[]tab = MyUtil.convertSeconds(time);
 		hourChoice.setValue(tab[0]);
 		minuteChoice.setValue(tab[1]);
 		secondChoice.setValue(tab[2]);
@@ -120,12 +112,10 @@ public class WindowController implements Initializable{
 		int hours = hourChoice.getValue();
 		int sec = secondChoice.getValue();
 		long time = MyUtil.toMiliseconds(hours, minutes, sec);
-		/*
-		MeteoClient client = new MeteoClient(ville,pays);
-		MeteoLoader loader = new MeteoLoader(client, time);*/
 		App.loader.setVille(ville);
 		App.loader.setPays(pays);
 		App.loader.setRefreshTime(time);
+		updateTimeLabel(time);
 		labelNuages.textProperty().bind(App.loader.getTextClouds());
 		labelVent.textProperty().bind(App.loader.getTextWind());
 		labelTemp.textProperty().bind(App.loader.getTextTemp());
@@ -141,6 +131,10 @@ public class WindowController implements Initializable{
 		int sec = secondChoice.getValue();
 		long time = MyUtil.toMiliseconds(hours, minutes, sec);
 		App.loader.setRefreshTime(time);
+		updateTimeLabel(time);
+	}
+	
+	public void updateTimeLabel(long time) {
 		int tab[] = MyUtil.convertSeconds((int)time/1000);
 		String textTime = "Temps de rafraichissement actuel : ";
 		if(tab[0]!=0) {
