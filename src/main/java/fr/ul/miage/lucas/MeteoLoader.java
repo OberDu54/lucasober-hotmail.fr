@@ -40,8 +40,6 @@ public class MeteoLoader extends Service<Void> {
 	 * Label ou afficher les résultats
 	 */
 	private Label label;
-
-	private StringProperty text;
 	
 	/**
 	 * Texte renseignant les nuages
@@ -63,10 +61,22 @@ public class MeteoLoader extends Service<Void> {
 	 */
 	private StringProperty textTemp;
 	
+	private StringProperty text;
+	
 	/**
 	 * Texte decrivant le temps d'une manière générale
 	 */
 	private StringProperty textDesc;
+	
+	/**
+	 * Texte decrivant l'humidité
+	 */
+	private StringProperty textHumidity;
+	
+	/**
+	 * Texte decrivant la visibilité
+	 */
+	private StringProperty textVisibility;
 	
 	private ObjectProperty<Image> imageProperty;
 
@@ -80,6 +90,8 @@ public class MeteoLoader extends Service<Void> {
 		this.textVille = new SimpleStringProperty("");
 		this.textTemp = new SimpleStringProperty("");
 		this.textDesc = new SimpleStringProperty("");
+		this.textHumidity = new SimpleStringProperty("");
+		this.textVisibility = new SimpleStringProperty("");
 		this.imageProperty = new SimpleObjectProperty<Image>();
 	}
 
@@ -107,6 +119,8 @@ public class MeteoLoader extends Service<Void> {
 						List<Weather> weather = result.getWeather();
 						String desc = weather.get(0).getDescription();
 						String iconCode = weather.get(0).getIcon();
+						int humidity = res.getMain().getHumidity();
+						int visibility = res.getVisibility();
 						Platform.runLater(
 							()->{
 								textVille.set(v+", "+client.getCountry());
@@ -114,6 +128,8 @@ public class MeteoLoader extends Service<Void> {
 								textClouds.set(""+clouds.getAll()+"%");
 								textWind.set("Vitesse : "+wind.getSpeed()+"m/s Degré : "+wind.getDeg());
 								textDesc.set(desc);
+								textVisibility.set(visibility+"m");
+								textHumidity.set(humidity+"%");
 								imageProperty.set(new Image("http://openweathermap.org/img/w/"+ iconCode +".png"));
 							}
 						);
@@ -178,6 +194,14 @@ public class MeteoLoader extends Service<Void> {
 
 	public ObjectProperty<Image> getImageProperty() {
 		return imageProperty;
+	}
+
+	public StringProperty getTextHumidity() {
+		return textHumidity;
+	}
+
+	public StringProperty getTextVisibility() {
+		return textVisibility;
 	}
 
 	public void setVille(String v) {

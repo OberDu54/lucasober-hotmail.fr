@@ -23,24 +23,24 @@
       <Label layoutX="354.0" layoutY="117.0" text="Minutes" />
       <Label layoutX="549.0" layoutY="117.0" text="Secondes" />
       <TextField fx:id="countryField" layoutX="448.0" layoutY="35.0" prefHeight="25.0" prefWidth="92.0" />
-      <Label fx:id="labelVent" layoutX="120.0" layoutY="627.0" prefHeight="19.0" prefWidth="492.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="labelVent" layoutX="120.0" layoutY="627.0" prefHeight="19.0" prefWidth="168.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label fx:id="displayer1" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="670.0" prefHeight="27.0" prefWidth="106.0" text="Nuages : ">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelNuages" layoutX="120.0" layoutY="674.0" prefHeight="19.0" prefWidth="492.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="labelNuages" layoutX="120.0" layoutY="674.0" prefHeight="19.0" prefWidth="168.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label fx:id="labelVille" alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="329.0" prefHeight="25.0" prefWidth="216.0">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="579.0" prefHeight="27.0" prefWidth="106.0" text="Température :">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="579.0" prefHeight="27.0" prefWidth="106.0" text="Température :">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelTemp" layoutX="287.0" layoutY="583.0" prefHeight="19.0" prefWidth="253.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="labelTemp" layoutX="274.0" layoutY="583.0" prefHeight="19.0" prefWidth="259.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label fx:id="labelDesc" alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="360.0" prefHeight="17.0" prefWidth="492.0">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
@@ -49,5 +49,17 @@
       <ImageView fx:id="imageView" fitHeight="154.0" fitWidth="216.0" layoutX="229.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="timeLabel" layoutX="60.0" layoutY="171.0" prefHeight="17.0" prefWidth="430.0" text="Temps de rafraichissement : " />
       <Button fx:id="modifTime" layoutX="509.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateRefreshTime" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: Green; -fx-text-fill: White;" text="Modifier" />
+      <Label fx:id="labelVisibilite" layoutX="456.0" layoutY="627.0" prefHeight="19.0" prefWidth="168.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="labelHumidite" layoutX="456.0" layoutY="674.0" prefHeight="19.0" prefWidth="168.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label layoutX="391.0" layoutY="628.0" text="Visibilité :">
+         <font>
+            <Font name="Segoe UI Light" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="674.0" text="Humidité :">
+         <font>
+            <Font name="Segoe UI Light" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

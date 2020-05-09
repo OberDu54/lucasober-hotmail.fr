@@ -49,28 +49,34 @@ public class WindowController implements Initializable{
 	private Button refreshButton;
 	
 	@FXML
-	public Label labelVent;
+	private Label labelVent;
 	
 	@FXML
-	public Label labelNuages;
+	private Label labelNuages;
 	
 	@FXML
-	public Label labelTemp;
+	private Label labelTemp;
 	
 	@FXML
-	public Label labelVille;
+	private Label labelVille;
 	
 	@FXML
-	public Label labelDesc;
+	private Label labelDesc;
 	
 	@FXML
-	public Label timeLabel;
+	private Label timeLabel;
 	
 	@FXML
-	public Button modifTime;
+	private Label labelVisibilite;
 	
 	@FXML
-	public ImageView imageView;
+	private Label labelHumidite;
+	
+	@FXML
+	private Button modifTime;
+	
+	@FXML
+	private ImageView imageView;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -122,6 +128,8 @@ public class WindowController implements Initializable{
 		labelVille.textProperty().bind(App.loader.getTextVille());
 		labelDesc.textProperty().bind(App.loader.getTextDesc());
 		imageView.imageProperty().bind(App.loader.getImageProperty());
+		labelHumidite.textProperty().bind(App.loader.getTextHumidity());
+		labelVisibilite.textProperty().bind(App.loader.getTextVisibility());
 		App.loader.start();
 	}
 	
