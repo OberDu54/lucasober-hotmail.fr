@@ -97,6 +97,8 @@ public class MeteoLoader extends Service<Void> {
 						String v = res.getName();
 						float t = res.getMain().getTemp();
 						float celsius = t-273.15f;
+						float max = res.getMain().getTempMax()-273.15f;
+						float min = res.getMain().getTempMin()-273.15f;
 						DecimalFormat df = new DecimalFormat("##.#");
 						String temp = df.format(celsius);
 						Result result = JSONProcessor.simpleDeserialize(jsonString);
@@ -108,7 +110,7 @@ public class MeteoLoader extends Service<Void> {
 						Platform.runLater(
 							()->{
 								textVille.set(v+", "+client.getCountry());
-								textTemp.set(temp+"°");
+								textTemp.set(temp+"°C	Min : "+min+"°C	  Max : "+max+"°C");
 								textClouds.set(""+clouds.getAll()+"%");
 								textWind.set("Vitesse : "+wind.getSpeed()+"m/s Degré : "+wind.getDeg());
 								textDesc.set(desc);

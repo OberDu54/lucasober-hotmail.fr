@@ -35,12 +35,12 @@
             <Font name="Segoe UI Light" size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="579.0" prefHeight="27.0" prefWidth="106.0" text="Température :">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="579.0" prefHeight="27.0" prefWidth="106.0" text="Température :">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelTemp" layoutX="342.0" layoutY="583.0" prefHeight="19.0" prefWidth="106.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
+      <Label fx:id="labelTemp" layoutX="287.0" layoutY="583.0" prefHeight="19.0" prefWidth="253.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label fx:id="labelDesc" alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="360.0" prefHeight="17.0" prefWidth="492.0">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
@@ -48,6 +48,6 @@
       </Label>
       <ImageView fx:id="imageView" fitHeight="154.0" fitWidth="216.0" layoutX="229.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="timeLabel" layoutX="60.0" layoutY="171.0" prefHeight="17.0" prefWidth="430.0" text="Temps de rafraichissement : " />
-      <Button fx:id="modifTime" layoutX="509.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: Green; -fx-text-fill: White;" text="Modifier" onAction="#updateRefreshTime" />
+      <Button fx:id="modifTime" layoutX="509.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateRefreshTime" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: Green; -fx-text-fill: White;" text="Modifier" />
    </children>
 </AnchorPane>
