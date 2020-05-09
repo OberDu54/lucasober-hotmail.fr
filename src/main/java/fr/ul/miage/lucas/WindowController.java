@@ -13,10 +13,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.TextFlow;
 
@@ -114,6 +116,7 @@ public class WindowController implements Initializable{
 		}
 		String ville = cityField.getText();
 		String pays = countryField.getText();
+		/*
 		int minutes = minuteChoice.getValue();
 		int hours = hourChoice.getValue();
 		int sec = secondChoice.getValue();
@@ -122,6 +125,7 @@ public class WindowController implements Initializable{
 		App.loader.setPays(pays);
 		App.loader.setRefreshTime(time);
 		updateTimeLabel(time);
+		*/
 		labelNuages.textProperty().bind(App.loader.getTextClouds());
 		labelVent.textProperty().bind(App.loader.getTextWind());
 		labelTemp.textProperty().bind(App.loader.getTextTemp());
@@ -130,16 +134,27 @@ public class WindowController implements Initializable{
 		imageView.imageProperty().bind(App.loader.getImageProperty());
 		labelHumidite.textProperty().bind(App.loader.getTextHumidity());
 		labelVisibilite.textProperty().bind(App.loader.getTextVisibility());
-		App.loader.start();
+		if(updateRefreshTime()) {
+			App.loader.start();
+		}
 	}
 	
-	public void updateRefreshTime() {
+	public Boolean updateRefreshTime() {
 		int minutes = minuteChoice.getValue();
 		int hours = hourChoice.getValue();
 		int sec = secondChoice.getValue();
 		long time = MyUtil.toMiliseconds(hours, minutes, sec);
-		App.loader.setRefreshTime(time);
-		updateTimeLabel(time);
+		if(time!=0) {
+			App.loader.setRefreshTime(time);
+			updateTimeLabel(time);
+			return true;
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Erreur");
+			alert.setHeaderText("Le temps de rafraichissement ne peut pas valoir 0");
+			alert.show();
+			return false;
+		}
 	}
 	
 	public void updateTimeLabel(long time) {
