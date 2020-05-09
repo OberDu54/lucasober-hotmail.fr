@@ -38,7 +38,7 @@ public class App extends Application{
 		}
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-		//primaryStage.setResizable(false);
+		primaryStage.setResizable(false);
 		primaryStage.show();	
 	}
 	
