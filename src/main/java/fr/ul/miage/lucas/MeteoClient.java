@@ -10,14 +10,41 @@ import com.sun.jersey.api.client.WebResource;
 
 import fr.ul.miage.meteo.json.Result;
 
+/**
+ * Classe permettant d'utiliser l'api 
+ * 
+ * @author lucas
+ *
+ */
 public class MeteoClient {
+	
+	/**
+	 * Logger
+	 */
 	private static final Logger LOG = Logger.getLogger(MeteoClient.class.getName());
+	
 	//statics
+	/**
+	 * URL de l'api
+	 */
 	public static String WEBSERVICE="https://api.openweathermap.org/data/2.5/";
+	
 	//fields
+	/**
+	 * Clé d'api
+	 */
 	private String apiKey;
+	
+	/**
+	 * Ville recherchée
+	 */
 	private String city;
+	
+	/**
+	 * Pays recherché
+	 */
 	private String country;
+	
 	//constructors
 	public MeteoClient() {
 		this("75b83b66ff1ca04ec816f27b3e5f2890","Nancy","fr");
@@ -33,6 +60,7 @@ public class MeteoClient {
 		setCity(city);
 		setCountry(country);
 	}	
+	
 	//methods
 	/**
 	 * Construire la requête

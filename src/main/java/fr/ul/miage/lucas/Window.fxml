@@ -43,7 +43,7 @@
       </Label>
       <Label layoutX="388.0" layoutY="674.0" text="Humidité :">
       </Label>
-      <Label fx:id="labelError" alignment="CENTER" layoutX="166.0" layoutY="219.0" prefHeight="17.0" prefWidth="344.0">
+      <Label fx:id="labelError" alignment="CENTER" layoutX="166.0" layoutY="219.0" prefHeight="17.0" prefWidth="344.0" textFill="RED">
       </Label>
    </children>
 </AnchorPane>

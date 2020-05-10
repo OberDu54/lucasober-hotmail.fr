@@ -72,6 +72,9 @@ public class WindowController implements Initializable{
 	private Label labelHumidite;
 	
 	@FXML
+	private Label labelError;
+	
+	@FXML
 	private Button modifTime;
 	
 	@FXML
@@ -128,6 +131,7 @@ public class WindowController implements Initializable{
 		imageView.imageProperty().bind(App.loader.getImageProperty());
 		labelHumidite.textProperty().bind(App.loader.getTextHumidity());
 		labelVisibilite.textProperty().bind(App.loader.getTextVisibility());
+		labelError.textProperty().bind(App.loader.getTextError());
 		if(updateRefreshTime()) {
 			App.loader.start();
 		}
@@ -171,5 +175,6 @@ public class WindowController implements Initializable{
 		textTime += tab[2] + " secondes ";
 		timeLabel.setText(textTime);
 	}
+	
 
 }
