@@ -20,12 +20,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Classe principale 
+ * 
+ * @author lucas
+ *
+ */
 public class App extends Application{
 	
+	/**
+	 * Logger
+	 */
 	private static final Logger LOG = Logger.getLogger(App.class.getName());
 	
+	/**
+	 * Objet meteoLoader statique permettant d'utiliser l'api
+	 */
 	public static MeteoLoader loader = new MeteoLoader(new MeteoClient("Ville","Pays"), 5000);
 	
+	/**
+	 * Lance l'interface utilisateur
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("TP3_Oberhausser");
@@ -42,6 +57,11 @@ public class App extends Application{
 		primaryStage.show();	
 	}
 	
+	/**
+	 * Lit les éventuels arguments et lance l'application
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// paramètres
 		String ville = "Nancy";

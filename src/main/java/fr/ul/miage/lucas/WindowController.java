@@ -24,6 +24,9 @@ import javafx.scene.text.TextFlow;
 
 public class WindowController implements Initializable{
 	
+	/**
+	 * Logger
+	 */
 	private static final Logger LOG = Logger.getLogger(WindowController.class.getName());
 	
 	@FXML
@@ -79,7 +82,10 @@ public class WindowController implements Initializable{
 	
 	@FXML
 	private ImageView imageView;
-
+	
+	/**
+	 * Initialise les éléments de l'interface
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		cityField.setText("Entrez un nom de ville pour la recherche");
@@ -108,7 +114,9 @@ public class WindowController implements Initializable{
 		secondChoice.setValue(tab[2]);
 	}
 
-	
+	/**
+	 * Méthode lancée par l'appui sur le bouton principal qui charge la météo 
+	 */
 	public void getMeteo() {
 		if(App.loader.isRunning()) {
 			App.loader.cancel();
@@ -116,16 +124,6 @@ public class WindowController implements Initializable{
 		}
 		String ville = cityField.getText();
 		String pays = countryField.getText();
-		/*
-		int minutes = minuteChoice.getValue();
-		int hours = hourChoice.getValue();
-		int sec = secondChoice.getValue();
-		long time = MyUtil.toMiliseconds(hours, minutes, sec);
-		App.loader.setVille(ville);
-		App.loader.setPays(pays);
-		App.loader.setRefreshTime(time);
-		updateTimeLabel(time);
-		*/
 		labelNuages.textProperty().bind(App.loader.getTextClouds());
 		labelVent.textProperty().bind(App.loader.getTextWind());
 		labelTemp.textProperty().bind(App.loader.getTextTemp());
@@ -139,6 +137,10 @@ public class WindowController implements Initializable{
 		}
 	}
 	
+	/**
+	 * Met à jour le temps de rafraichissement de la météo 
+	 * @return True si le changement a bien été effectué
+	 */
 	public Boolean updateRefreshTime() {
 		int minutes = minuteChoice.getValue();
 		int hours = hourChoice.getValue();
@@ -157,6 +159,10 @@ public class WindowController implements Initializable{
 		}
 	}
 	
+	/**
+	 * Met à jour le label indiquant le temps de rafraichissement
+	 * @param time Nouveau temps de rafraichissement en milisecondes
+	 */
 	public void updateTimeLabel(long time) {
 		int tab[] = MyUtil.convertSeconds((int)time/1000);
 		String textTime = "Temps de rafraichissement actuel : ";

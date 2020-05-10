@@ -30,21 +30,13 @@ public class JSONProcessor {
 		out.close();
 	}
 
-	/**
-	 * lire un objet Student
-	 * 
-	 * @param filename
-	 * @return
-	 * @throws FileNotFoundException
-	 */
-	public static Result deserialize(String filename) throws FileNotFoundException {
-		Reader in = new BufferedReader(new FileReader(filename));
-		GsonBuilder builder = new GsonBuilder();
-		Gson gson = builder.create();
-		Result res = gson.fromJson(in, Result.class);
-		return res;
-	}
 	
+	/**
+	 * Lit un objet meteo
+	 * 
+	 * @param json une chaine de caractères au format json
+	 * @return Un objet Result exploitable
+	 */
 	public static Result simpleDeserialize(String json) {
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();

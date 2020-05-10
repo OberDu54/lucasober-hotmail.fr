@@ -22,8 +22,17 @@ import javafx.beans.property.StringProperty;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
+/**
+ * Service utilisant un meteoClient et qui met à jour l'interface utilisateur
+ * 
+ * @author lucas
+ *
+ */
 public class MeteoLoader extends Service<Void> {
-
+	
+	/**
+	 * Logger
+	 */
 	private static final Logger LOG = Logger.getLogger(MeteoLoader.class.getName());
 	
 	/**
@@ -78,9 +87,16 @@ public class MeteoLoader extends Service<Void> {
 	 */
 	private StringProperty textVisibility;
 	
+	/**
+	 * Objet correspondant à l'icone météo
+	 */
 	private ObjectProperty<Image> imageProperty;
 
-	
+	/**
+	 * Constructeur 
+	 * @param client MeteoClient utilisé
+	 * @param time Temps de rafraichissement
+	 */
 	public MeteoLoader(MeteoClient client, long time) {
 		super();
 		this.client = client;
@@ -96,6 +112,9 @@ public class MeteoLoader extends Service<Void> {
 	}
 
 	@Override
+	/**
+	 * Méthode appellée lorsque le service est lancé
+	 */
 	protected Task<Void> createTask() {
 		return new Task<Void>() {
 
