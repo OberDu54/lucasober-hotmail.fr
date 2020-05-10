@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.TextFlow;
 
 public class WindowController implements Initializable{
@@ -124,6 +125,8 @@ public class WindowController implements Initializable{
 		}
 		String ville = cityField.getText();
 		String pays = countryField.getText();
+		App.loader.setVille(ville);
+		App.loader.setPays(pays);
 		labelNuages.textProperty().bind(App.loader.getTextClouds());
 		labelVent.textProperty().bind(App.loader.getTextWind());
 		labelTemp.textProperty().bind(App.loader.getTextTemp());
