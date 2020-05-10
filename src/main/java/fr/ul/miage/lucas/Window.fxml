@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +14,7 @@
       <TextField fx:id="cityField" layoutX="59.0" layoutY="35.0" prefHeight="25.0" prefWidth="344.0" />
       <ChoiceBox fx:id="hourChoice" layoutX="59.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
       <ChoiceBox fx:id="minuteChoice" layoutX="255.0" layoutY="113.0" prefHeight="25.0" prefWidth="92.0" />
-      <Button fx:id="refreshButton" layoutX="226.0" layoutY="234.0" mnemonicParsing="false" onAction="#getMeteo" prefHeight="74.0" prefWidth="222.0" style="-fx-background-color: blue; -fx-border-style: solid;" text="Lancer/Réinitialiser" textFill="WHITE" />
+      <Button fx:id="refreshButton" layoutX="226.0" layoutY="234.0" mnemonicParsing="false" onAction="#getMeteo" prefHeight="74.0" prefWidth="222.0" style="-fx-background-color: blue;" text="Lancer/Réinitialiser" textFill="WHITE" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="623.0" prefHeight="27.0" prefWidth="106.0" text="Vent : ">
          <font>
             <Font name="Segoe UI Light" size="14.0" />
@@ -46,9 +47,12 @@
             <Font name="Segoe UI Light" size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="imageView" fitHeight="154.0" fitWidth="216.0" layoutX="229.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageView" fitHeight="154.0" fitWidth="216.0" layoutX="268.0" layoutY="354.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor></ImageView>
       <Label fx:id="timeLabel" layoutX="60.0" layoutY="171.0" prefHeight="17.0" prefWidth="430.0" text="Temps de rafraichissement : " />
-      <Button fx:id="modifTime" layoutX="509.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateRefreshTime" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: Green; -fx-text-fill: White;" text="Modifier" />
+      <Button fx:id="modifTime" layoutX="448.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateRefreshTime" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: Green; -fx-text-fill: White;" text="Modifier" />
       <Label fx:id="labelVisibilite" layoutX="456.0" layoutY="627.0" prefHeight="19.0" prefWidth="168.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label fx:id="labelHumidite" layoutX="456.0" layoutY="674.0" prefHeight="19.0" prefWidth="168.0" style="-fx-border-color: BLACK; -fx-background-color: GREY;" textFill="WHITE" />
       <Label layoutX="391.0" layoutY="628.0" text="Visibilité :">
