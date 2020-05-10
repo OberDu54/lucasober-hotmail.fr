@@ -4,11 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-import com.sun.javafx.geom.transform.BaseTransform.Degree;
-import com.sun.javafx.util.TempState;
-
-import fr.ul.miage.meteo.json.Result;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,8 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.TextFlow;
 
 public class WindowController implements Initializable{
 	
