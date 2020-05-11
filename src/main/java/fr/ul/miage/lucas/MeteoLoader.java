@@ -1,14 +1,9 @@
 package fr.ul.miage.lucas;
 
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.logging.Logger;
-
-import javax.ws.rs.core.NewCookie;
 
 import fr.ul.miage.meteo.json.Clouds;
 import fr.ul.miage.meteo.json.Result;
@@ -46,11 +41,6 @@ public class MeteoLoader extends Service<Void> {
 	private long refreshTime;
 	
 	/**
-	 * Label ou afficher les résultats
-	 */
-	private Label label;
-	
-	/**
 	 * Texte renseignant les nuages
 	 */
 	private StringProperty textClouds;
@@ -70,7 +60,10 @@ public class MeteoLoader extends Service<Void> {
 	 */
 	private StringProperty textTemp;
 	
-	private StringProperty text;
+	/**
+	 * Texte affichant les erreurs
+	 */
+	private StringProperty textError;
 	
 	/**
 	 * Texte decrivant le temps d'une manière générale
@@ -86,6 +79,7 @@ public class MeteoLoader extends Service<Void> {
 	 * Texte decrivant la visibilité
 	 */
 	private StringProperty textVisibility;
+
 	
 	/**
 	 * Objet correspondant à l'icone météo
@@ -101,6 +95,7 @@ public class MeteoLoader extends Service<Void> {
 		super();
 		this.client = client;
 		this.refreshTime = time;
+		this.textError = new SimpleStringProperty("");
 		this.textClouds = new SimpleStringProperty("");
 		this.textWind = new SimpleStringProperty("");
 		this.textVille = new SimpleStringProperty("");
@@ -124,6 +119,7 @@ public class MeteoLoader extends Service<Void> {
 					Result res = client.getWeatherByCityName();
 					String jsonString = client.getJsonWeatherByCityName();
 					
+					
 					if (res != null) {
 						String v = res.getName();
 						float t = res.getMain().getTemp();
@@ -139,7 +135,7 @@ public class MeteoLoader extends Service<Void> {
 						String desc = weather.get(0).getDescription();
 						String iconCode = weather.get(0).getIcon();
 						int humidity = res.getMain().getHumidity();
-						int visibility = res.getVisibility();
+						int visibility = res.getVisibility()/1000;
 						Platform.runLater(
 							()->{
 								textVille.set(v+", "+client.getCountry());
@@ -147,7 +143,7 @@ public class MeteoLoader extends Service<Void> {
 								textClouds.set(""+clouds.getAll()+"%");
 								textWind.set("Vitesse : "+wind.getSpeed()+"m/s Degré : "+wind.getDeg());
 								textDesc.set(desc);
-								textVisibility.set(visibility+"m");
+								textVisibility.set(visibility+"km");
 								textHumidity.set(humidity+"%");
 								imageProperty.set(new Image("http://openweathermap.org/img/w/"+ iconCode +".png"));
 							}
@@ -156,7 +152,7 @@ public class MeteoLoader extends Service<Void> {
 						LOG.severe("Impossible de trouver les informations pour cette ville");
 						Platform.runLater(
 							()->{
-								text.set("Impossible de trouver les informations pour cette ville");
+								textError.set("Impossible de trouver les informations pour cette ville");
 							}
 						);
 						this.cancel();
@@ -171,12 +167,12 @@ public class MeteoLoader extends Service<Void> {
 	
 	
 	//Getters et Setters
-	public StringProperty getText() {
-		return text;
+	public StringProperty getTextError() {
+		return textError;
 	}
 
 	public void setText(StringProperty text) {
-		this.text = text;
+		this.textError = text;
 	}
 
 	public MeteoClient getClient() {
