@@ -115,11 +115,11 @@ public class MeteoLoader extends Service<Void> {
 
 			@Override
 			protected Void call() throws Exception {
+				
 				while(!isCancelled()) {
 					Result res = client.getWeatherByCityName();
 					String jsonString = client.getJsonWeatherByCityName();
-					
-					
+
 					if (res != null) {
 						String v = res.getName();
 						float t = res.getMain().getTemp();
@@ -153,6 +153,14 @@ public class MeteoLoader extends Service<Void> {
 						Platform.runLater(
 							()->{
 								textError.set("Impossible de trouver les informations pour cette ville");
+								textVille.set("");
+								textTemp.set("");
+								textClouds.set("");
+								textWind.set("");
+								textDesc.set("");
+								textVisibility.set("");
+								textHumidity.set("");
+								imageProperty.set(null);
 							}
 						);
 						this.cancel();
